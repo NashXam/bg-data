@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{14ABA68E-5ADA-4A8C-8EC8-E29BA15A3FB0}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>BGData</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PublicArt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ArtService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IArtApi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ApiService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IApiService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+  </ItemGroup>
+</Project>
