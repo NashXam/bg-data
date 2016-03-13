@@ -40,7 +40,7 @@ namespace BGData.Droid
 			{
 				button.Text = string.Format("{0} clicks!", count++);
 
-				await artService.GetPublicArt(publicArt =>
+				await artService.GetPublicArt(5, publicArt =>
 				RunOnUiThread(() =>
 				{
 						var titles = publicArt.Select(art => art.Title);

@@ -12,10 +12,9 @@ namespace BGData.Services
 {
 	public class ArtService : ReactiveObject
 	{
-		private IApiService _apiService;
+		private readonly IApiService _apiService;
 		private readonly IBlobCache _cache;
-		private int _currentLimit = 5;
-//		private int _currentOffset = 0;
+		private const int _currentLimit = 5;
 
 		public ArtService(IApiService apiService)
 		{
