@@ -36,7 +36,7 @@ namespace BGData.iOS
 			table = new UITableView(new CGRect(0,20,View.Bounds.Width, View.Bounds.Height - 20)); // defaults to Plain style
 			table.AutoresizingMask = UIViewAutoresizing.All;
 
-			artList = HandleNoArt(artList);
+			artList = App.HandleNoArt(artList);
 
 			table.Source = new TableSource(artList, this);
 			Add (table);
@@ -49,7 +49,7 @@ namespace BGData.iOS
 				artService = new ArtService(apiService);
 				artList = await artService.GetPublicArt();
 
-				artList = HandleNoArt(artList);
+				artList = App.HandleNoArt(artList);
 
 				if(artList != null)
 				{
@@ -60,37 +60,6 @@ namespace BGData.iOS
 					});
 				}
 			});
-		}
-
-		static List<PublicArt> HandleNoArt(List<PublicArt> artList)
-		{
-			if(artList == null)
-			{
-				var tableItems = new List<PublicArt> {
-					new PublicArt {
-						Title = "Vegetables"
-					},
-					new PublicArt {
-						Title = "Fruits"
-					},
-					new PublicArt {
-						Title = "Flower Buds"
-					},
-					new PublicArt {
-						Title = "Legumes"
-					},
-					new PublicArt {
-						Title = "Bulbs"
-					},
-					new PublicArt {
-						Title = "Tubers"
-					}
-				};
-				App.CurrentOffset = 0;
-				return tableItems;
-			}
-
-			return artList;
 		}
 
 		public override void ViewWillAppear(bool animated)
