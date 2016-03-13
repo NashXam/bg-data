@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Foundation;
 using UIKit;
-using BGData.Models;
 
 namespace BGData.iOS 
 {
-	public class TableSource : UITableViewSource 
+	public class TableSource<T> : UITableViewSource 
 	{
-		protected List<PublicArt> tableItems;
+		protected List<T> tableItems;
 		protected string cellIdentifier = "TableCell";
 		ViewController owner;
 
-		public TableSource (List<PublicArt> items, ViewController owner)
+		public TableSource (List<T> items, ViewController owner)
 		{
 			tableItems = items;
 			this.owner = owner;

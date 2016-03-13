@@ -31,7 +31,7 @@ namespace BGData.iOS
 				// Download data
 				var apiService = new ApiService();
 				var artService = new ArtService(apiService);
-				artService.GetPublicArt(20, artList =>
+				await artService.GetPublicArt(20, artList =>
 				{
 					downloadSuccessful = true;
 				});
