@@ -64,9 +64,7 @@ namespace BGData.iOS
 			}
 			else
 			{
-				tableSource = new TableSource<string>(new List<string> {
-												"Sorry, no data available."
-											}, this);
+				tableSource = new TableSource<string>(new List<string> {"Sorry, no data available."}, this);
 			}
 			return tableSource;
 		}
