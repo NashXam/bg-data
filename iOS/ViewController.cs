@@ -1,10 +1,10 @@
 ﻿using System;
 		
-using UIKit;
-using CoreGraphics;
 using System.Collections.Generic;
 using BGData.Models;
 using BGData.Services;
+using CoreGraphics;
+using UIKit;
 
 namespace BGData.iOS
 {
@@ -36,9 +36,7 @@ namespace BGData.iOS
 			table = new UITableView(new CGRect(0,20,View.Bounds.Width, View.Bounds.Height - 20)); // defaults to Plain style
 			table.AutoresizingMask = UIViewAutoresizing.All;
 
-			artList = App.HandleNoArt(artList);
-
-			table.Source = new TableSource(artList, this);
+			table.Source = BuildTableSource(artList);
 			Add (table);
 
 			// here we can use a notification to let us know when the app has entered the foreground
@@ -49,17 +47,26 @@ namespace BGData.iOS
 				artService = new ArtService(apiService);
 				artList = await artService.GetPublicArt();
 
-				artList = App.HandleNoArt(artList);
-
-				if(artList != null)
+				InvokeOnMainThread(() =>
 				{
-					InvokeOnMainThread(() =>
-					{
-						table.Source = new TableSource(artList, this);
-						table.ReloadData();
-					});
-				}
+					table.Source = BuildTableSource(artList);
+					table.ReloadData();
+				});
 			});
+		}
+
+		UITableViewSource BuildTableSource(List<PublicArt> artList)
+		{
+			UITableViewSource tableSource = null;
+			if(artList != null)
+			{
+				tableSource = new TableSource<PublicArt>(artList, this);
+			}
+			else
+			{
+				tableSource = new TableSource<string>(new List<string> {"Sorry, no data available."}, this);
+			}
+			return tableSource;
 		}
 
 		public override void ViewWillAppear(bool animated)
